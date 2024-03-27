@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TrialsModule } from './trials/trials.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { TrialsModule } from './trials/trials.module';
         path: join(process.cwd(), 'src/graphql.ts'),
       },
     }),
+    ConfigModule.forRoot(),
     TrialsModule,
   ],
   controllers: [AppController],
