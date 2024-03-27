@@ -15,4 +15,11 @@ export class ParticipantsResolver {
   async participants(): Promise<Participant[]> {
     return await this.participantsService.getParticipants();
   }
+
+  @Mutation('enrollParticipant')
+  async enrollParticipant(
+    @Args('participant') participant: EnrollParticipant,
+  ): Promise<EnrollParticipantResponse> {
+    return this.participantsService.enrollParticipant(participant);
+  }
 }

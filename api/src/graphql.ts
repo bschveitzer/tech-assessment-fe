@@ -20,15 +20,15 @@ export interface IMutation {
 export interface EnrollParticipant {
     name: string;
     trialId: string;
-    height?: Nullable<string>;
-    weight?: Nullable<string>;
+    height?: Nullable<number>;
+    weight?: Nullable<number>;
     hasDiabetes?: Nullable<boolean>;
     hadCovid?: Nullable<boolean>;
 }
 
 export interface EnrollParticipantResponse {
     id: string;
-    eligible: boolean;
+    isEligible: boolean;
 }
 
 export interface GetParticipant {
@@ -39,8 +39,8 @@ export interface GetParticipant {
 export interface MedicalFile {
     id: string;
     participant: Participant;
-    height?: Nullable<string>;
-    weight?: Nullable<string>;
+    height?: Nullable<number>;
+    weight?: Nullable<number>;
     participantId?: Nullable<string>;
     hasDiabetes?: Nullable<boolean>;
     hadCovid?: Nullable<boolean>;

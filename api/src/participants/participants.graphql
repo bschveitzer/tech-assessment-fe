@@ -17,7 +17,7 @@ type EnrollParticipant {
 
 type EnrollParticipantResponse {
   id: String!
-  eligible: Boolean!
+  isEligible: Boolean!
 }
 
 type GetParticipant {
