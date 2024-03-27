@@ -7,6 +7,9 @@ export class ParticipantsService {
   constructor(private prismaService: PrismaService) {}
 
   async getParticipants(whereInput?: Prisma.ParticipantWhereInput) {
-    return this.prismaService.participant.findMany({ where: whereInput });
+    return this.prismaService.participant.findMany({
+      where: whereInput,
+      include: { trial: true },
+    });
   }
 }

@@ -2,13 +2,30 @@ type Query {
   participants: [Participant!]!
 }
 
-type Participant {
-  id: String!
-  name: String!
-  trial: Trial!
-  trialId: String
-  medicalFile: MedicalFile
+type Mutation {
+  enrollParticipant: [EnrollParticipant!]!
 }
+
+type EnrollParticipant {
+  name: String!
+  trialId: String!
+  height: String
+  weight: String
+  hasDiabetes: Boolean
+  hadCovid: Boolean
+}
+
+type EnrollParticipantResponse {
+  id: String!
+  eligible: Boolean!
+}
+
+type GetParticipant {
+  id: String!
+  trialId: String
+}
+
+union Participant = GetParticipant | EnrollParticipant
 
 type MedicalFile {
   id: String!

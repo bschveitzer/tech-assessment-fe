@@ -29,8 +29,8 @@ model Participant {
 
 model MedicalFile {
   id            String      @id @default(uuid())
-  height        String
-  weight        String
+  height        Int
+  weight        Int
   hasDiabetes   Boolean?
   hadCovid      Boolean?
   participant   Participant @relation(fields: [participantId], references: [id])

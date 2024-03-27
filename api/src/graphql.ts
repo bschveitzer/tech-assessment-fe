@@ -13,12 +13,27 @@ export interface IQuery {
     trials(): Trial[] | Promise<Trial[]>;
 }
 
-export interface Participant {
-    id: string;
+export interface IMutation {
+    enrollParticipant(): EnrollParticipant[] | Promise<EnrollParticipant[]>;
+}
+
+export interface EnrollParticipant {
     name: string;
-    trial: Trial;
+    trialId: string;
+    height?: Nullable<string>;
+    weight?: Nullable<string>;
+    hasDiabetes?: Nullable<boolean>;
+    hadCovid?: Nullable<boolean>;
+}
+
+export interface EnrollParticipantResponse {
+    id: string;
+    eligible: boolean;
+}
+
+export interface GetParticipant {
+    id: string;
     trialId?: Nullable<string>;
-    medicalFile?: Nullable<MedicalFile>;
 }
 
 export interface MedicalFile {
@@ -37,4 +52,5 @@ export interface Trial {
     participants?: Nullable<Participant[]>;
 }
 
+export type Participant = GetParticipant | EnrollParticipant;
 type Nullable<T> = T | null;
