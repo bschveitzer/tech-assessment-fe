@@ -9,4 +9,8 @@ export class TrialsService {
   async getTrials(whereInput?: Prisma.TrialWhereInput) {
     return this.prismaService.trial.findMany({ where: whereInput });
   }
+
+  async getTrialById(whereUniqueInput: Prisma.TrialWhereUniqueInput) {
+    return this.prismaService.trial.findUnique({ where: whereUniqueInput });
+  }
 }
