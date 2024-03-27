@@ -9,8 +9,8 @@ type Mutation {
 type EnrollParticipant {
   name: String!
   trialId: String!
-  height: String
-  weight: String
+  height: Int
+  weight: Int
   hasDiabetes: Boolean
   hadCovid: Boolean
 }
@@ -30,8 +30,8 @@ union Participant = GetParticipant | EnrollParticipant
 type MedicalFile {
   id: String!
   participant: Participant!
-  height: String
-  weight: String
+  height: Int
+  weight: Int
   participantId: String
   hasDiabetes: Boolean
   hadCovid: Boolean
