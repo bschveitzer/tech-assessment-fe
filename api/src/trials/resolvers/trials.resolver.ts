@@ -7,7 +7,7 @@ export class TrialsResolver {
   constructor(private trialsService: TrialsService) {}
 
   @Query('trials')
-  async trials(): Promise<Trial[]> {
+  async trials(): Promise<any> {
     return await this.trialsService.getTrials();
   }
 }

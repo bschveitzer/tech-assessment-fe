@@ -1,0 +1,21 @@
+type Query {
+  participants: [Participant!]!
+}
+
+type Participant {
+  id: String!
+  name: String!
+  trial: Trial!
+  trialId: String
+  medicalFile: MedicalFile
+}
+
+type MedicalFile {
+  id: String!
+  participant: Participant!
+  height: String
+  weight: String
+  participantId: String
+  hasDiabetes: Boolean
+  hadCovid: Boolean
+}

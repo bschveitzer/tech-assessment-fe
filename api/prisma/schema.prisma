@@ -24,13 +24,13 @@ model Participant {
   name        String
   trial       Trial        @relation(fields: [trialId], references: [id])
   trialId     String
-  height      String
-  weight      String
   medicalFile MedicalFile?
 }
 
 model MedicalFile {
   id            String      @id @default(uuid())
+  height        String
+  weight        String
   hasDiabetes   Boolean?
   hadCovid      Boolean?
   participant   Participant @relation(fields: [participantId], references: [id])
