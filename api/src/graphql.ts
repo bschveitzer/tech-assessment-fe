@@ -34,7 +34,7 @@ export interface MedicalFile {
 export interface Trial {
     id: string;
     name: string;
-    participants: Participant[];
+    participants?: Nullable<Participant[]>;
 }
 
 type Nullable<T> = T | null;
