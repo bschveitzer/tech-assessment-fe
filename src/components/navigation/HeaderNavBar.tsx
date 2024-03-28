@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { router } from '../../routes';
 import { capitalizeFirstLetter } from '../../utils/stringFormat';
 
-const NavUnlisted = styled.ul`
+const NavBar = styled.ul`
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 
   a {
     text-decoration: none;
@@ -28,25 +28,24 @@ const NavUnlisted = styled.ul`
 `;
 
 export const HeaderNavBar: React.FC = () => {
-  const navRoutes = router.routes
-    .filter((route) => route.id)
-    .sort((a, b) => a.id.localeCompare(b.id));
+  const routes = router.routes[0].children;
+  const navRoutes = routes?.filter((route) => route.path !== '/').reverse();
 
   return (
-    <NavUnlisted>
-      {navRoutes.map((route) =>
-        route.path ? (
+    <NavBar>
+      {navRoutes?.map((route) =>
+        route.path && route.id ? (
           <NavLink
             to={route.path}
             key={route.id}
             className={({ isActive }) => (isActive ? 'active' : '')}
           >
-            <li>{capitalizeFirstLetter(route.id)}</li>
+            <li>{capitalizeFirstLetter(route?.id)}</li>
           </NavLink>
         ) : (
           <></>
         )
       )}
-    </NavUnlisted>
+    </NavBar>
   );
 };

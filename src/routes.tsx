@@ -1,26 +1,28 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  redirect,
+} from 'react-router-dom';
 import { Trials } from './scenes/trials';
+import { BaseLayout } from './components/layout/BaseLayout';
 
-export const router = createBrowserRouter([
-  {
-    id: '',
-    path: '/',
-    loader: () => redirect('/trials'),
-  },
-  {
-    id: 'trials',
-    path: '/trials',
-    element: <Trials />,
-  },
-  {
-    id: 'participants',
-    path: '/participants',
-    element: <div>Participants</div>,
-    children: [
-      {
-        path: '/participants/enroll',
-        element: <div>Enroll</div>,
-      },
-    ],
-  },
-]);
+export const routes = (
+  <Route id={undefined} element={<BaseLayout />}>
+    <Route id={undefined} path="/" loader={() => redirect('/trials')} />
+    <Route id="trials" path="/trials" element={<Trials />} />
+    <Route
+      id="participants"
+      path="/participants"
+      element={<div>Participants</div>}
+    >
+      <Route
+        id="enroll"
+        path="/participants/enroll"
+        element={<div>Enroll</div>}
+      />
+    </Route>
+  </Route>
+);
+
+export const router = createBrowserRouter(createRoutesFromElements(routes));
