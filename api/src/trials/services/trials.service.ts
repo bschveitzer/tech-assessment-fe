@@ -7,7 +7,14 @@ export class TrialsService {
   constructor(private prismaService: PrismaService) {}
 
   async getTrials(whereInput?: Prisma.TrialWhereInput) {
-    return this.prismaService.trial.findMany({ where: whereInput });
+    return this.prismaService.trial.findMany({
+      where: whereInput,
+      include: {
+        _count: {
+          select: { participants: true },
+        },
+      },
+    });
   }
 
   async getTrialById(whereUniqueInput: Prisma.TrialWhereUniqueInput) {

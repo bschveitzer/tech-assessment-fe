@@ -8,8 +8,8 @@ import { Trials } from './scenes/trials';
 import { BaseLayout } from './components/layout/BaseLayout';
 
 export const routes = (
-  <Route id={undefined} element={<BaseLayout />}>
-    <Route id={undefined} path="/" loader={() => redirect('/trials')} />
+  <Route element={<BaseLayout />}>
+    <Route path="/" loader={() => redirect('/trials')} />
     <Route id="trials" path="/trials" element={<Trials />} />
     <Route
       id="participants"
