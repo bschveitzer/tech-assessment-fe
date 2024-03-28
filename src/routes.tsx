@@ -1,4 +1,5 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
+import { Trials } from './scenes/trials';
 
 export const router = createBrowserRouter([
   {
@@ -7,14 +8,14 @@ export const router = createBrowserRouter([
   },
   {
     path: '/trials',
-    element: <div>Trials</div>,
+    element: <Trials />,
   },
   {
     path: '/participants',
     element: <div>Participants</div>,
     children: [
       {
-        path: '/enroll',
+        path: '/participants/enroll',
         element: <div>Enroll</div>,
       },
     ],
