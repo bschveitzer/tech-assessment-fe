@@ -6,6 +6,10 @@ const Layout = styled.div``;
 
 const InnerLayout = styled.main`
   padding: 0 20%;
+
+  @media screen and (max-width: 800px) {
+    padding: 0 5%;
+  }
 `;
 export const BaseLayout = () => {
   return (

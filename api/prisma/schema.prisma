@@ -17,6 +17,7 @@ model Trial {
   id           String        @id @default(uuid())
   name         String
   participants Participant[]
+  createdAt    DateTime      @default(now())
 }
 
 model Participant {
@@ -25,6 +26,7 @@ model Participant {
   trial       Trial        @relation(fields: [trialId], references: [id])
   trialId     String
   medicalFile MedicalFile?
+  createdAt   DateTime     @default(now())
 }
 
 model MedicalFile {
@@ -35,4 +37,5 @@ model MedicalFile {
   hadCovid      Boolean?
   participant   Participant @relation(fields: [participantId], references: [id])
   participantId String      @unique
+  createdAt     DateTime    @default(now())
 }

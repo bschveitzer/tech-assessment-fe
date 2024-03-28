@@ -39,6 +39,7 @@ export type GetParticipant = {
 
 export type MedicalFile = {
   __typename?: 'MedicalFile';
+  createdAt: Scalars['String']['output'];
   hadCovid?: Maybe<Scalars['Boolean']['output']>;
   hasDiabetes?: Maybe<Scalars['Boolean']['output']>;
   height?: Maybe<Scalars['Int']['output']>;
@@ -55,6 +56,7 @@ export type Mutation = {
 
 export type Participant = {
   __typename?: 'Participant';
+  createdAt: Scalars['String']['output'];
   id: Scalars['String']['output'];
   medicalFile: MedicalFile;
   name: Scalars['String']['output'];
@@ -76,6 +78,7 @@ export type Query = {
 export type Trial = {
   __typename?: 'Trial';
   _count?: Maybe<ParticipantsCount>;
+  createdAt: Scalars['String']['output'];
   id: Scalars['String']['output'];
   name: Scalars['String']['output'];
   participants?: Maybe<Array<Participant>>;

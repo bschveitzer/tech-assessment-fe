@@ -7,7 +7,7 @@ export class TrialsService {
   constructor(private prismaService: PrismaService) {}
 
   async getTrials(whereInput?: Prisma.TrialWhereInput) {
-    return this.prismaService.trial.findMany({
+    const trials = await this.prismaService.trial.findMany({
       where: whereInput,
       include: {
         _count: {
@@ -15,6 +15,11 @@ export class TrialsService {
         },
       },
     });
+
+    return trials.map((trial) => ({
+      ...trial,
+      createdAt: trial.createdAt.toISOString(),
+    }));
   }
 
   async getTrialById(whereUniqueInput: Prisma.TrialWhereUniqueInput) {

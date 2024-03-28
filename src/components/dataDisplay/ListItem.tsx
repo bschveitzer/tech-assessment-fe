@@ -4,6 +4,7 @@ const StyledListItem = styled.header`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #0c0c0d14;
+  margin-bottom: 20px;
 `;
 
 const StyledBox = styled.div`

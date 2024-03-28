@@ -12,9 +12,14 @@ export class ParticipantsService {
   ) {}
 
   async getParticipants(whereInput?: Prisma.ParticipantWhereInput) {
-    return this.prismaService.participant.findMany({
+    const participants = await this.prismaService.participant.findMany({
       where: whereInput,
     });
+
+    return participants.map((participant) => ({
+      ...participant,
+      createdAt: participant.createdAt.toISOString(),
+    }));
   }
 
   async enrollParticipant(participant: EnrollParticipant) {

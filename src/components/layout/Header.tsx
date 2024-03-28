@@ -10,6 +10,11 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
+  @media screen and (max-width: 800px) {
+    padding: 0 5%;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const Header: React.FC = () => {

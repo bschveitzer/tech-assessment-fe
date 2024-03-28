@@ -1,9 +1,5 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import {
-  EnrollParticipant,
-  EnrollParticipantResponse,
-  Participant,
-} from 'src/graphql';
+import { EnrollParticipant, EnrollParticipantResponse } from 'src/graphql';
 import { ParticipantsService } from 'src/participants/services/participants.service';
 
 @Resolver()

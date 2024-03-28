@@ -4,7 +4,7 @@ const StyledPageHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10% 0;
+  margin: 5% 0;
 `;
 
 const StyledTitle = styled.h1`

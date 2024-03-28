@@ -42,6 +42,7 @@ export interface Participant {
     trialId: string;
     trial: Trial;
     medicalFile: MedicalFile;
+    createdAt: string;
 }
 
 export interface MedicalFile {
@@ -52,6 +53,7 @@ export interface MedicalFile {
     participantId: string;
     hasDiabetes?: Nullable<boolean>;
     hadCovid?: Nullable<boolean>;
+    createdAt: string;
 }
 
 export interface ParticipantsCount {
@@ -63,6 +65,7 @@ export interface Trial {
     name: string;
     participants?: Nullable<Participant[]>;
     _count?: Nullable<ParticipantsCount>;
+    createdAt: string;
 }
 
 type Nullable<T> = T | null;
