@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { router } from '../../routes';
 import { capitalizeFirstLetter } from '../../utils/stringFormat';
 
+const availableRoutes = ['trials', 'participants'];
+
 const NavBar = styled.ul`
   display: flex;
   gap: 2rem;
@@ -29,7 +31,9 @@ const NavBar = styled.ul`
 
 export const HeaderNavBar: React.FC = () => {
   const routes = router.routes[0].children;
-  const navRoutes = routes?.filter((route) => route.path !== '/').reverse();
+  const navRoutes = routes
+    ?.filter((route) => route.path && availableRoutes.includes(route.path))
+    .reverse();
 
   return (
     <NavBar>

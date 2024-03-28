@@ -1,20 +1,34 @@
 import { useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { GET_PARTICIPANTS } from './graphql/queries';
 import { Container } from '../../components/layout/Container';
 import { PageHeader } from '../../components/layout/PageHeader';
 import { ListItem } from '../../components/dataDisplay/ListItem';
 import * as GQL from '../../__generated__/graphql';
 import { format } from 'date-fns';
+import { Button } from '../../components/buttons/Button';
+import { useNavigate } from 'react-router-dom';
 
 export const Participants: React.FC = () => {
+  const navigate = useNavigate();
   const { data, loading } = useQuery<{ participants: GQL.Participant[] }>(
     GET_PARTICIPANTS
   );
 
+  const handleEnrollClick = useCallback(() => {
+    navigate('/enroll');
+  }, [navigate]);
+
   return (
     <Container>
-      <PageHeader title="Participants" />
+      <PageHeader
+        title="Participants"
+        action={
+          <Button onClick={handleEnrollClick} $contained>
+            Enroll a participant
+          </Button>
+        }
+      />
       {loading ? (
         <div>Loading...</div>
       ) : (

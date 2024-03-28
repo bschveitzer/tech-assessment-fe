@@ -11,14 +11,9 @@ import { Participants } from './scenes/participants';
 export const routes = (
   <Route element={<BaseLayout />}>
     <Route path="/" loader={() => redirect('/trials')} />
-    <Route id="trials" path="/trials" element={<Trials />} />
-    <Route id="participants" path="/participants" element={<Participants />}>
-      <Route
-        id="enroll"
-        path="/participants/enroll"
-        element={<div>Enroll</div>}
-      />
-    </Route>
+    <Route id="trials" path="trials" element={<Trials />} />
+    <Route id="participants" path="participants" element={<Participants />} />
+    <Route id="enroll" path="enroll" element={<div>Enroll</div>} />
   </Route>
 );
 
