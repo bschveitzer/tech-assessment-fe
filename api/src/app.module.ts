@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TrialsModule } from './trials/trials.module';
 import { ConfigModule } from '@nestjs/config';
+import { ParticipantsModule } from './participants/participants.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     ConfigModule.forRoot(),
     TrialsModule,
+    ParticipantsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

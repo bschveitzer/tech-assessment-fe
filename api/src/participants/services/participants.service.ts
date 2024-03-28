@@ -3,13 +3,11 @@ import { Prisma } from '@prisma/client';
 import { CommonService } from 'src/common/common.service';
 import { PrismaService } from 'src/common/prisma.service';
 import { EnrollParticipant } from 'src/graphql';
-import { TrialsService } from 'src/trials/services/trials.service';
 
 @Injectable()
 export class ParticipantsService {
   constructor(
     private prismaService: PrismaService,
-    private trialsService: TrialsService,
     private commonService: CommonService,
   ) {}
 
