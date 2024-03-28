@@ -3,7 +3,6 @@ import {
   EnrollParticipant,
   EnrollParticipantResponse,
   Participant,
-  Trial,
 } from 'src/graphql';
 import { ParticipantsService } from 'src/participants/services/participants.service';
 
@@ -12,7 +11,7 @@ export class ParticipantsResolver {
   constructor(private participantsService: ParticipantsService) {}
 
   @Query('participants')
-  async participants(): Promise<Participant[]> {
+  async participants(): Promise<{ name: string }[]> {
     return await this.participantsService.getParticipants();
   }
 

@@ -36,12 +36,20 @@ export interface GetParticipant {
     trialId?: Nullable<string>;
 }
 
+export interface Participant {
+    id: string;
+    name: string;
+    trialId: string;
+    trial: Trial;
+    medicalFile: MedicalFile;
+}
+
 export interface MedicalFile {
     id: string;
     participant: Participant;
     height?: Nullable<number>;
     weight?: Nullable<number>;
-    participantId?: Nullable<string>;
+    participantId: string;
     hasDiabetes?: Nullable<boolean>;
     hadCovid?: Nullable<boolean>;
 }
@@ -52,5 +60,4 @@ export interface Trial {
     participants?: Nullable<Participant[]>;
 }
 
-export type Participant = GetParticipant | EnrollParticipant;
 type Nullable<T> = T | null;

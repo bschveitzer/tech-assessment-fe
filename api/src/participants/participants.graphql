@@ -25,14 +25,20 @@ type GetParticipant {
   trialId: String
 }
 
-union Participant = GetParticipant | EnrollParticipant
+type Participant {
+  id: String!
+  name: String!
+  trialId: String!
+  trial: Trial!
+  medicalFile: MedicalFile!
+}
 
 type MedicalFile {
   id: String!
   participant: Participant!
   height: Int
   weight: Int
-  participantId: String
+  participantId: String!
   hasDiabetes: Boolean
   hadCovid: Boolean
 }
