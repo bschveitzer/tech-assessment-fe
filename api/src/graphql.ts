@@ -54,10 +54,15 @@ export interface MedicalFile {
     hadCovid?: Nullable<boolean>;
 }
 
+export interface ParticipantsCount {
+    participants: number;
+}
+
 export interface Trial {
     id: string;
     name: string;
     participants?: Nullable<Participant[]>;
+    _count?: Nullable<ParticipantsCount>;
 }
 
 type Nullable<T> = T | null;

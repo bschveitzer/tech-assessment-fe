@@ -2,8 +2,13 @@ type Query {
   trials: [Trial!]!
 }
 
+type ParticipantsCount {
+  participants: Int!
+}
+
 type Trial {
   id: String!
   name: String!
   participants: [Participant!]
+  _count: ParticipantsCount
 }
