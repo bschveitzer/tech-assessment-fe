@@ -8,15 +8,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export interface IQuery {
-    participants(): Participant[] | Promise<Participant[]>;
-    trials(): Trial[] | Promise<Trial[]>;
-}
-
-export interface IMutation {
-    enrollParticipant(): EnrollParticipant[] | Promise<EnrollParticipant[]>;
-}
-
 export interface EnrollParticipant {
     name: string;
     trialId: string;
@@ -26,8 +17,17 @@ export interface EnrollParticipant {
     hadCovid?: Nullable<boolean>;
 }
 
+export interface IQuery {
+    participants(): Participant[] | Promise<Participant[]>;
+    trials(): Trial[] | Promise<Trial[]>;
+}
+
+export interface IMutation {
+    enrollParticipant(participant: EnrollParticipant): Nullable<EnrollParticipantResponse> | Promise<Nullable<EnrollParticipantResponse>>;
+}
+
 export interface EnrollParticipantResponse {
-    id: string;
+    id?: Nullable<string>;
     isEligible: boolean;
 }
 

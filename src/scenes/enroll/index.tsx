@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React, { useCallback } from 'react';
 import { Container } from '../../components/layout/Container';
 import { PageHeader } from '../../components/layout/PageHeader';
@@ -10,6 +10,7 @@ import { Input } from '../../components/inputs/Input';
 import { Checkbox } from '../../components/inputs/Checkbox';
 import { Select } from '../../components/inputs/Select';
 import { Button } from '../../components/buttons/Button';
+import { ENROLL_PARTICIPANT } from './graphql/mutation';
 
 const EnrollSchema = Yup.object().shape({
   name: Yup.string().required('This is a required field'),
@@ -23,6 +24,11 @@ const EnrollSchema = Yup.object().shape({
 export const Enroll: React.FC = () => {
   const { data, loading } = useQuery<{ trials: GQL.Trial[] }>(GET_TRIALS);
 
+  const [
+    enrollParticipant,
+    { data: enrollParticipantData, loading: enrollParticipantLoading, error },
+  ] = useMutation(ENROLL_PARTICIPANT);
+
   const formInitialValues: GQL.EnrollParticipant = {
     name: '',
     height: 0,
@@ -32,9 +38,15 @@ export const Enroll: React.FC = () => {
     trialId: '',
   };
 
-  const handleSubmit = useCallback((values: FormikValues) => {
-    console.log('tei', values);
-  }, []);
+  const handleSubmit = useCallback(
+    (values: FormikValues) => {
+      console.log('tei', values);
+      enrollParticipant({
+        variables: { participant: values },
+      });
+    },
+    [enrollParticipant]
+  );
 
   return (
     <Container>

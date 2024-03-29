@@ -3,10 +3,10 @@ type Query {
 }
 
 type Mutation {
-  enrollParticipant: [EnrollParticipant!]!
+  enrollParticipant(participant: EnrollParticipant!): EnrollParticipantResponse
 }
 
-type EnrollParticipant {
+input EnrollParticipant {
   name: String!
   trialId: String!
   height: Int
@@ -16,7 +16,7 @@ type EnrollParticipant {
 }
 
 type EnrollParticipantResponse {
-  id: String!
+  id: String
   isEligible: Boolean!
 }
 
