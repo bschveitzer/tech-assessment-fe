@@ -12,7 +12,8 @@ import { useNavigate } from 'react-router-dom';
 export const Participants: React.FC = () => {
   const navigate = useNavigate();
   const { data, loading } = useQuery<{ participants: GQL.Participant[] }>(
-    GET_PARTICIPANTS
+    GET_PARTICIPANTS,
+    { fetchPolicy: 'network-only' }
   );
 
   const handleEnrollClick = useCallback(() => {
@@ -35,6 +36,7 @@ export const Participants: React.FC = () => {
         <div>
           {data?.participants.map((participant: GQL.Participant) => (
             <ListItem
+              key={participant.id}
               title={participant.name}
               description={`Enrolled in ${format(
                 participant.createdAt,

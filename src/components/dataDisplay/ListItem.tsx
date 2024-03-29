@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { ReactComponent as ChevronRightIcon } from '../../assets/svg/chevron-right.svg';
 const StyledListItem = styled.header`
   display: flex;
   justify-content: space-between;
@@ -29,20 +30,16 @@ const StyledDescription = styled.h2`
 interface PageHeaderProps {
   title: string;
   description?: string;
-  icon?: React.ReactNode;
 }
 
-export const ListItem: React.FC<PageHeaderProps> = ({
-  title,
-  description,
-  icon,
-}) => {
+export const ListItem: React.FC<PageHeaderProps> = ({ title, description }) => {
   return (
     <StyledListItem>
       <StyledBox>
         <StyledTitle>{title}</StyledTitle>
         <StyledDescription>{description}</StyledDescription>
       </StyledBox>
+      <ChevronRightIcon />
     </StyledListItem>
   );
 };

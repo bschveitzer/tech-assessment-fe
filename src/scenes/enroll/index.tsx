@@ -11,6 +11,7 @@ import { Checkbox } from '../../components/inputs/Checkbox';
 import { Select } from '../../components/inputs/Select';
 import { Button } from '../../components/buttons/Button';
 import { ENROLL_PARTICIPANT } from './graphql/mutation';
+import { useNavigate } from 'react-router-dom';
 
 const EnrollSchema = Yup.object().shape({
   name: Yup.string().required('This is a required field'),
@@ -22,12 +23,10 @@ const EnrollSchema = Yup.object().shape({
 });
 
 export const Enroll: React.FC = () => {
+  const navigate = useNavigate();
   const { data, loading } = useQuery<{ trials: GQL.Trial[] }>(GET_TRIALS);
 
-  const [
-    enrollParticipant,
-    { data: enrollParticipantData, loading: enrollParticipantLoading, error },
-  ] = useMutation(ENROLL_PARTICIPANT);
+  const [enrollParticipant] = useMutation(ENROLL_PARTICIPANT);
 
   const formInitialValues: GQL.EnrollParticipant = {
     name: '',
@@ -40,12 +39,18 @@ export const Enroll: React.FC = () => {
 
   const handleSubmit = useCallback(
     (values: FormikValues) => {
-      console.log('tei', values);
       enrollParticipant({
         variables: { participant: values },
+        onCompleted: (data) => {
+          if (data.enrollParticipant.isEligible) {
+            navigate('/success');
+          } else {
+            navigate('/error');
+          }
+        },
       });
     },
-    [enrollParticipant]
+    [enrollParticipant, navigate]
   );
 
   return (

@@ -7,7 +7,9 @@ import { ListItem } from '../../components/dataDisplay/ListItem';
 import * as GQL from '../../__generated__/graphql';
 
 export const Trials: React.FC = () => {
-  const { data, loading } = useQuery<{ trials: GQL.Trial[] }>(GET_TRIALS);
+  const { data, loading } = useQuery<{ trials: GQL.Trial[] }>(GET_TRIALS, {
+    fetchPolicy: 'network-only',
+  });
 
   return (
     <Container>
@@ -16,10 +18,11 @@ export const Trials: React.FC = () => {
         <div>Loading...</div>
       ) : (
         <div>
-          {data?.trials.map((trial: any) => (
+          {data?.trials.map((trial: GQL.Trial) => (
             <ListItem
+              key={trial.id}
               title={trial.name}
-              description={`${trial._count.participants} participants`}
+              description={`${trial._count?.participants} participants`}
             />
           ))}
         </div>
